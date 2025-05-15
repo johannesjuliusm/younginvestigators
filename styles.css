@@ -1,1 +1,450 @@
-/* Global Reset and Basic Styling */* {    margin: 0;    padding: 0;    box-sizing: border-box;}/* Color Variables */:root {    --black: #000000; /* Black */    --white: #ffffff; /* White */    --shadow-dark: #212326; /* Dark Grey */    --shadow-light: #3F403A; /* Light Grey */    --midtone: #8B8C80; /* Dark Sand */    --highlight: #F25E5E; /* Coral Red */    --pop: #EC1717; /* Neon Red */    --contrast: #F2F0D5; /* Sand Yellow */    --text-light: #F2F0D5; /* Sand Yellow */    --text-dark: #212326; /* Dark Grey */    --text-black: #000000; /* Black */    --video-bg: #1c1c1c; /* Almost Black */}/* Body Styling */body {    font-family: Helvetica, Arial, sans-serif;    line-height: 1.6;    background-color: var(--white);}/* Smooth Scrolling */html {    scroll-behavior: smooth;}/* Hero Section */.hero {    position: relative;    width: 100%;    height: 60vh;    background-image: url('./images/hero-image.png');    background-size: cover;    background-position: center;    display: flex;    justify-content: center;    align-items: center;    text-align: center;    color: var(--white);}.hero h1 {    font-size: 3em;    margin: 0;    padding: 10px;}.hero p {    font-size: 1.5em;    margin: 0;    padding: 10px;}/* Section Styling */.section {    padding: 60px 20px;    text-align: center;}/* Color Themes for Sections */.section-one {    background-color: var(--shadow-dark);    color: var(--white);}.section-two {    background-color: var(--highlight);    color: var(--text-light);}.section-three {    background-color: var(--contrast);    color: var(--text-dark);}.section-four {    background-color: var(--shadow-light);    color: var(--contrast);}.section-five {    background-color: var(--shadow-dark); /* Dark Grey */    color: var(--contrast);}.section-six {    background-color: var(--black); /* Black */    color: var(--midtone);}/* Typography */h2 {    font-size: 2em;    margin-bottom: 0.5em;}p {    font-size: 1.1em;}/* Video Container */.video-container {    position: relative;    width: 80%; /* Set maximum width of video box */    max-width: 100%; /* Ensure it doesn't exceed the parent width */    margin: 20px auto; /* Center the video and add space */    aspect-ratio: 16 / 9; /* Maintain the 16:9 aspect ratio */    background-color: var(--video-bg);}.video-container iframe {    width: 100%;    height: 100%;    border: none;-ah-    display: block; /* Prevent inline whitespace issue */    vertical-align: top; /* Fix the small gap under the iframe */}/* Responsive Design */@media (max-width: 768px) {    .hero {        height: 50vh;    }    .hero h1 {        font-size: 2em;    }    .hero p {        font-size: 1.2em;    }    .section {        padding: 40px 15px;    }    h2 {        font-size: 1.5em;    }    p {        font-size: 1em;    }    .video-container {        width: 90%; /* Wider on smaller screens */    }}@media (max-width: 480px) {    .hero {        height: 40vh;    }    .hero h1 {        font-size: 1.8em;    }    .hero p {        font-size: 1em;    }    .section {        padding: 30px 10px;    }    h2 {        font-size: 1.3em;    }    p {        font-size: 0.9em;    }}
+/* Global Reset and Basic Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Color Variables */
+:root {
+    --black: #000000;       /* Black */
+    --white: #ffffff;       /* White */
+    --shadow-dark: #212326; /* Dark Grey */
+    --shadow-light: #3F403A;/* Light Grey */
+    --midtone: #8B8C80;     /* Dark Sand */
+    --highlight: #F25E5E;   /* Coral Red */
+    --pop: #EC1717;         /* Neon Red */
+    --contrast: #F2F0D5;    /* Sand Yellow */
+    --text-light: #F2F0D5;  /* Sand Yellow */
+    --text-dark: #212326;   /* Dark Grey */
+    --text-black: #000000;  /* Black */
+    --video-bg: #1c1c1c;    /* Almost Black */
+}
+
+:target {
+    scroll-margin-top: 72px; /* Adjust to match the navbar height */
+}
+
+/* Body Styling */
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--highlight);
+    padding-top: 60px;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Fixed Navigation Bar at Top */
+.navbar {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center the navbar elements */
+    height: 72px; /* Ensure consistent height */
+    padding: 0 20px; /* Add padding for spacing */
+    position: fixed; /* Keep navbar fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--shadow-dark);
+    z-index: 1000;
+}
+
+.hamburger {
+    margin-left: 20px; /* Add spacing from the edge */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger-icon {
+    width: 100%;
+    height: auto;
+}
+
+.navbar nav {
+    width: 100%; /* Ensure it spans the available width */
+    display: flex;
+    justify-content: space-between; /* Spread hamburger menu and subscribe button across all available space */
+    align-items: center;
+}
+
+.menu {
+    display: none;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Add spacing between items */
+    background-color: var(--shadow-dark);
+    position: absolute;
+    top: 72px;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style-type: none; /* Remove bullet points */
+    padding-left: 0; /* Remove default padding */
+}
+
+.menu.active {
+    display: flex;
+    flex-direction: column; /* Ensure vertical stacking */
+    gap: 10px; /* Add spacing between items */
+}
+
+/* Adjust padding for list items to ensure spacing */
+.menu li {
+    padding-left: 0px; /* Add padding to move text further from the left edge */
+}
+
+/* Navbar Link Style */
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px; /* Increased left padding */
+    font-size: 1em; /* Ensure text is readable */
+    text-align: left; /* Align text to the left */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space text and chevron */
+    align-items: center; /* Center items vertically */
+    border: 4px solid transparent; /* Define border in default state to prevent layout shift */
+    transition: border-color 0.2s ease; /* Smooth transition for border color */
+    border-radius: 20px; /* Rounded corners */
+    text-indent: 8px; /* Indent text to move it away from the left edge */
+}
+
+.menu a::after {
+    content: '\276F'; /* Unicode for chevron symbol */
+    font-size: 1em; /* Match text size */
+    color: var(--highlight); /* Use highlight color for chevron */
+}
+
+.menu a:hover {
+    border-color: var(--highlight); /* Change only the border color on hover */
+    border-radius: 20px; /* Ensure rounded corners */
+    transform: none; /* Disable text enlargement */
+}
+
+/* Navbar Logo Styling */
+.logo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0; /* Equal top and bottom padding */
+    height: 100%; /* Ensures full height usage */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Center the logo */
+}
+
+.logo img {
+    height: 4.5vh; /* Scales with viewport height */
+    max-height: 72px;
+    vertical-align: middle; /* Aligns the image vertically */
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+/* Hamburger Menu Button */
+.hamburger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger-icon {
+    width: 100%;
+    height: auto;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    background-image: url('./images/hero-image.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin: 0;
+    padding: 10px;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin: 0;
+    padding: 10px;
+}
+
+/* Section Styling */
+.section {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+/* Color Themes for Sections */
+.latest-episode {
+    background-color: var(--shadow-dark);
+    color: var(--white);
+    padding: 60px 0px;
+}
+
+.section-two {
+    background-color: var(--highlight);
+    color: var(--text-light);
+    padding: 60px 0px;
+}
+
+.section-three {
+    background-color: var(--contrast);
+    color: var(--text-dark);
+    padding: 60px 0px;
+}
+
+.contact {
+    background-color: var(--shadow-light);
+    color: var(--contrast);
+    padding: 60px 0px;
+}
+
+.section-five {
+    background-color: var(--shadow-dark);
+    color: var(--contrast);
+    padding: 60px 0px;
+}
+
+/* Footer Section */
+.footer-section {
+    background-color: var(--black);
+    color: var(--midtone);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-text {
+    font-size: 0.7em;
+}
+
+.footer-logos {
+    display: flex;
+    gap: 15px;
+}
+
+.social-logo {
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+.social-logo:hover {
+    opacity: 0.8;
+}
+
+/* Typography */
+h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    font-size: 1.1em;
+}
+
+/* Video Consent Banner */
+.video-banner {
+    font-size: 0.8em;
+    background-color: #333333;
+    color: #ffffff;
+    padding: 8px;
+    text-align: center;
+    margin: 8px auto;
+    border-radius: 5px;
+    max-width: 60%;
+}
+
+.video-banner button {
+    font-size: 1em;
+    margin: 8px;
+    padding: 8px 16px;
+    background-color: #666666;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.video-banner button:hover {
+    background-color: #777777;
+}
+
+.video-banner a {
+    color: inherit; /* Use the default text color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.video-banner a:hover {
+    color: var(--pop); /* Change color to blue on hover */
+}
+
+/* Video Container */
+.video-container {
+    position: relative;
+    width: 60%; /* Set maximum width of video box */
+    max-width: 100%; /* Ensure it doesn't exceed the parent width */
+    margin: 20px auto; /* Center the video and add space */
+    aspect-ratio: 16 / 9; /* Maintain the 16:9 aspect ratio */
+    background-color: var(--video-bg);
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block; /* Prevent inline whitespace issue */
+}
+
+/* Update Subscribe button to have only a border and no background */
+.subscribe-button {
+    background-color: transparent; /* Remove background fill */
+    color: var(--highlight); /* Set text color to highlight */
+    border: 2px solid var(--highlight); /* Add border with highlight color */
+    border-radius: 12px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Font size */
+    margin-left: auto; /* Push the button to the right */
+    margin-right: 20px; /* Add spacing from the edge */
+    display: inline-block; /* Ensure proper alignment */
+    transition: color 0.2s ease, border-color 0.2s ease; /* Smooth hover effect */
+}
+
+.subscribe-button:hover {
+    color: var(--pop); /* Change text color to pop color on hover */
+    border-color: var(--pop); /* Change border color to pop color on hover */
+}
+
+.subscribe-button-wrapper {
+    margin-left: auto; /* Push the button to the right */
+    margin-right: 20px; /* Add spacing from the edge */
+    display: flex; /* Ensure proper alignment */
+    align-items: center; /* Center the button vertically */
+    text-decoration: none; /* Remove underline from the link */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        flex-direction: column; /* Ensure vertical stacking on mobile */
+        gap: 10px; /* Add spacing between items */
+        justify-content: flex-start; /* Align items to the top */
+    }
+
+    .menu a {
+        padding: 5px 10px; /* Reduce padding for smaller screens */
+        font-size: 0.9em; /* Adjust font size for better fit */
+    }
+
+    .hero {
+        height: 50vh;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+    }
+
+    .section {
+        width: 100%;
+        padding: 40px 0px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+    
+    .video-banner {
+        max-width: 90%;
+    }
+
+    .video-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 40vh;
+    }
+
+    .hero h1 {
+        font-size: 1.8em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .section {
+        padding: 30px 10px;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    p {
+        font-size: 0.9em;
+    }
+}

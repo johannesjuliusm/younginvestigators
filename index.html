@@ -7,27 +7,85 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+	
+	<!-- Simple Navbar with Centered Logo -->
+	<header class="navbar">
+	    <button class="hamburger">
+	        <img src="./images/menu-candybox.png" alt="Menu Icon" class="hamburger-icon">
+	    </button>
+	    <nav>
+	        <a href="#home" class="logo">
+	            <img src="./images/navbar-logo.svg" alt="Young Investigators Logo">
+	        </a>
+	        <ul class="menu">
+	            <li><a href="#about">About Young Investigators</a></li>
+				<li><a href="#podcast">The Podcast</a></li>
+	            <li><a href="#latest">Latest Episode</a></li>
+	            <li><a href="#episodes">All Episodes</a></li>
+				<li><a href="#classroom">Classroom</a></li>
+	            <li><a href="#contact">Contact</a></li>
+				<li><a href="https://www.youtube.com/@younginvestigators/?sub_confirmation=1" target="_blank">Support the Project</a></li>
+	        </ul>
+			<a href="https://www.youtube.com/@younginvestigators/?sub_confirmation=1" class="subscribe-button-wrapper">
+			    <button class="subscribe-button">Subscribe</button>
+			</a>
+	    </nav>
+	</header>
 
     <!-- Hero Section -->
-    <header class="hero">
-        <div class="overlay">
+    <header class="hero", id="home">
+        <div class="hero-content">
             <h1>Young Investigators</h1>
-            <p>The podcast for curious minds growing their paths in science and beyond</p>
+            <p>The podcast for curious minds growing their paths in science</p>
         </div>
     </header>
 
-	<!-- Section 1 -->
-	<section class="section section-one">
+	<!-- Latest Episode -->
+	<section class="section latest-episode", id="latest">
 	    <h2>Latest Episode</h2>
 	    <p>Catch up with the latest episode of the podcast here:</p>
-	    <div class="video-container">
-	        <iframe width="560" height="315" 
-	            src="https://www.youtube.com/embed/5m4ZkEqQrn0?si=6N1J9L_wPHSloScA" 
-	            title="YouTube video player" frameborder="0" 
+	<!-- YouTube Consent Banner -->
+	<div id="video-consent" class="video-banner">
+	    <p>This website uses embedded YouTube videos. By playing the video, you agree to YouTube's 
+	        <a href="https://policies.google.com/privacy" target="_blank">privacy policy</a>.
+	    </p>
+	    <button onclick="loadVideo()">Accept and Play</button>
+	</div>
+
+	<!-- Video Placeholder -->
+	<div id="video-placeholder" class="video-container">
+	    <!-- Placeholder image or message -->
+	    <p>Video will appear after consent.</p>
+	</div>
+	
+	<script>
+	function loadVideo() {
+	    const videoContainer = document.getElementById("video-placeholder");
+	    const consentBanner = document.getElementById("video-consent");
+
+	    // Embed YouTube video after consent
+	    videoContainer.innerHTML = `
+	        <iframe 
+	            src="https://www.youtube-nocookie.com/embed/5m4ZkEqQrn0?si=6N1J9L_wPHSloScA" 
+	            title="YouTube video" 
+	            frameborder="0" 
 	            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-	            allowfullscreen></iframe>
-	    </div>
-	</section>
+	            allowfullscreen>
+	        </iframe>
+	    `;
+	    consentBanner.style.display = "none";
+
+	    // Save consent in local storage
+	    localStorage.setItem("videoConsent", "true");
+	}
+
+	// Check for existing consent
+	window.onload = function() {
+	    if (localStorage.getItem("videoConsent") === "true") {
+	        loadVideo();
+	    }
+	};
+	</script>
 
     <!-- Section 2 -->
     <section class="section section-two">
@@ -41,9 +99,9 @@
         <p>Lorem ipsum dolor sit amet.</p>
     </section>
 	
-    <!-- Section 4 -->
-    <section class="section section-four">
-        <p>This will be a button soon.</p>
+    <!-- Contact Section -->
+    <section class="section contact", id="contact">
+        <p>podcast-at-younginvestigators.co</p>
     </section>
 	
     <!-- Section 5 -->
@@ -52,10 +110,23 @@
         <p>Links and stuff.</p>
     </section>
 	
-    <!-- Section 6 -->
-    <section class="section section-six">
-        <p>Last words.</p>
-    </section>
-	
+    <!-- Footer -->
+	<footer class="footer-section">
+	    <div class="footer-content">
+	        <!-- Left-aligned text -->
+	        <div class="footer-text">
+	            <p>&copy; 2025 Young Investigators | <a href="/privacy-policy.html">Privacy</a></p>
+	        </div>
+
+	        <!-- Right-aligned logos -->
+	        <div class="footer-logos">
+	            <a href="https://www.youtube.com/@younginvestigators" target="_blank">
+	                <img src="./images/youtube_icon_light_2024.svg" alt="YouTube" class="social-logo">
+	            </a>
+	        </div>
+	    </div>
+	</footer>
+
+	<script src="script.js"></script>
 </body>
 </html>
